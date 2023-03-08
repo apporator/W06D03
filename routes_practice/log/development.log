@@ -1,2 +1,65 @@
   [1m[35m (328.6ms)[0m  [1m[35mCREATE DATABASE "routes_practice_development" ENCODING = 'unicode'[0m
   [1m[35m (694.0ms)[0m  [1m[35mCREATE DATABASE "routes_practice_test" ENCODING = 'unicode'[0m
+Started GET "/" for ::1 at 2023-03-08 15:29:01 -0800
+
+ActiveRecord::NoDatabaseError - We could not find your database: routes_practice_development. Which can be found in the database configuration file located at config/database.yml.
+To resolve this issue:
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+To create your database, run:
+        bin/rails db:create:
+
+Started POST "/__better_errors/923a5a6c3df55950/variables" for ::1 at 2023-03-08 15:29:01 -0800
+Started GET "/" for ::1 at 2023-03-08 15:29:08 -0800
+
+ActiveRecord::NoDatabaseError - We could not find your database: routes_practice_development. Which can be found in the database configuration file located at config/database.yml.
+To resolve this issue:
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+To create your database, run:
+        bin/rails db:create:
+
+Started POST "/__better_errors/4070175847088736/variables" for ::1 at 2023-03-08 15:29:09 -0800
+Started GET "/users" for ::1 at 2023-03-08 15:31:29 -0800
+
+ActiveRecord::NoDatabaseError - We could not find your database: routes_practice_development. Which can be found in the database configuration file located at config/database.yml.
+To resolve this issue:
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+To create your database, run:
+        bin/rails db:create:
+
+  [1m[35m (409.9ms)[0m  [1m[35mCREATE DATABASE "routes_practice_development" ENCODING = 'unicode'[0m
+  [1m[35m (341.8ms)[0m  [1m[35mCREATE DATABASE "routes_practice_test" ENCODING = 'unicode'[0m
+Started GET "/users" for ::1 at 2023-03-08 15:32:49 -0800
+
+AbstractController::ActionNotFound - The action 'index' could not be found for UsersController:
+
+Started GET "/users" for ::1 at 2023-03-08 15:36:02 -0800
+Processing by UsersController#index as */*
+No template found for UsersController#index, rendering head :no_content
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 272)
+
+
+Started GET "/users" for ::1 at 2023-03-08 15:36:12 -0800
+Processing by UsersController#index as */*
+No template found for UsersController#index, rendering head :no_content
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 78)
+
+
+Started GET "/users" for ::1 at 2023-03-08 15:36:46 -0800
+Processing by UsersController#index as HTML
+Completed 406 Not Acceptable in 1ms (ActiveRecord: 0.0ms | Allocations: 701)
+
+
+
+ActionController::MissingExactTemplate - UsersController#index is missing a template for request formats: text/html:
+
+Started POST "/__better_errors/fff830c03b5e521d/variables" for ::1 at 2023-03-08 15:36:47 -0800
+Started GET "/users" for ::1 at 2023-03-08 15:40:41 -0800
+Processing by UsersController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 13)
+Completed 200 OK in 12ms (Views: 11.7ms | ActiveRecord: 0.0ms | Allocations: 1315)
+
+
