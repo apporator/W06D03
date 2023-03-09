@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+User.new(username: "Micheal").save!
+User.new(username: "Bilal").save!
 User.new(username: "Brandon").save!
 User.new(username: "Michele").save!
 User.new(username: "Christian").save!

@@ -27,8 +27,8 @@ class UsersController < ApplicationController
         user = User.find_by(id: params[:id])
 
         if user
+            # debugger
             user.username = user_params[:username] || user.username
-            # user.email = user_params[:email] || user.email
             user.save
             render json: user
         else
@@ -52,7 +52,6 @@ class UsersController < ApplicationController
             render json: user
         end
     end
-
 
     
     private
