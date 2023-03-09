@@ -10,8 +10,8 @@
 #  updated_at :datetime         not null
 #
 class Artwork < ApplicationRecord
-    validates :title, presence: true
+    validates :artist_id, :title, presence: true
     validates :image_url, presence: true, uniqueness:true
-    validates :artist_id, presence: true
+    validates :artist_id, uniqueness: {scope: :title, message: "Combination of artist and title must be unique!"}
     # validates  [:artist_id, :title], uniqueness: true
 end
