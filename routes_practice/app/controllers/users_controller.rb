@@ -27,8 +27,8 @@ class UsersController < ApplicationController
         user = User.find_by(id: params[:id])
 
         if user
-            user.name = user_params[:name] || user.name
-            user.email = user_params[:email] || user.name
+            user.username = user_params[:username] || user.username
+            # user.email = user_params[:email] || user.email
             user.save
             render json: user
         else
@@ -37,7 +37,10 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:email, :name, :id)
+        params.require(:user).permit(:username, :id)
     end
 
 end
+
+
+
