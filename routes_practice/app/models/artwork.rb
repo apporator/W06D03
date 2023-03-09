@@ -13,5 +13,19 @@ class Artwork < ApplicationRecord
     validates :artist_id, :title, presence: true
     validates :image_url, presence: true, uniqueness:true
     validates :artist_id, uniqueness: {scope: :title, message: "Combination of artist and title must be unique!"}
-    # validates  [:artist_id, :title], uniqueness: true
+    
+
+    belongs_to :artist,
+        class_name: :User,
+        foreign_key: :artist_id
+
+    has_many :connections,
+        class_name: :ArtworkShare,
+        foreign_key: :artwork_id
+    
+    has_many :shared_viewers,
+        through: :connections,
+        source: :viewer
+    
+
 end
