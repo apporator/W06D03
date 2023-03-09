@@ -176,3 +176,161 @@ Processing by UsersController#show as */*
 Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 181)
 
 
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8170507368831508575)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20230309003907)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" text NOT NULL, "email" text NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230309003907"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-03-09 00:40:25.882848"], ["updated_at", "2023-03-09 00:40:25.882848"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(8170507368831508575)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (6.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Michael"], ["email", "michael@stripe.com"], ["created_at", "2023-03-09 00:46:04.569083"], ["updated_at", "2023-03-09 00:46:04.569083"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bilal"], ["email", "bilal@stripe.com"], ["created_at", "2023-03-09 00:46:09.328519"], ["updated_at", "2023-03-09 00:46:09.328519"]]
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Brandon"], ["email", "brandon@tesla.com"], ["created_at", "2023-03-09 00:46:15.200830"], ["updated_at", "2023-03-09 00:46:15.200830"]]
+  [1m[36mTRANSACTION (5.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/users" for ::1 at 2023-03-08 16:49:12 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:3:in `index'
+Completed 200 OK in 22ms (Views: 11.2ms | ActiveRecord: 6.9ms | Allocations: 6394)
+
+
+Started GET "/users" for ::1 at 2023-03-08 16:49:52 -0800
+Processing by UsersController#index as */*
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms | Allocations: 3725)
+
+
+
+ActionView::MissingTemplate - Missing template users/index, application/index with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :vtt, :png, :jpeg, :gif, :bmp, :tiff, :svg, :mpeg, :mp3, :ogg, :m4a, :webm, :mp4, :otf, :ttf, :woff, :woff2, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip, :gzip], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby]}.
+Searched in:
+  * "/Users/mbird/code/gits/app_academy/homework_REPO/W06D03_repo/routes_practice/app/views"
+Did you mean?  layouts/application:
+  app/controllers/users_controller.rb:3:in `index'
+
+Started GET "/users" for ::1 at 2023-03-08 16:50:04 -0800
+Processing by UsersController#index as */*
+  Rendering html template
+  Rendered html template (Duration: 0.1ms | Allocations: 20)
+Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 1385)
+
+
+Started GET "/users" for ::1 at 2023-03-08 16:50:30 -0800
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 10)
+Completed 200 OK in 11ms (Views: 8.4ms | ActiveRecord: 0.0ms | Allocations: 1321)
+
+
+Started GET "/users" for ::1 at 2023-03-08 16:50:32 -0800
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 189)
+
+
+Started GET "/users" for ::1 at 2023-03-08 16:50:33 -0800
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 161)
+
+
+Started GET "/users" for ::1 at 2023-03-08 16:50:54 -0800
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:3:in `index'
+Completed 200 OK in 18ms (Views: 7.7ms | ActiveRecord: 6.6ms | Allocations: 3554)
+
+
+Started GET "/users/3" for ::1 at 2023-03-08 16:51:28 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 125)
+
+
+Started GET "/users" for ::1 at 2023-03-08 16:51:58 -0800
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:3:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.5ms | Allocations: 960)
+
+
+Started POST "/users" for ::1 at 2023-03-08 16:56:18 -0800
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Chris", "email"=>"chris@facebook.com"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 221)
+
+
+Started POST "/users" for ::1 at 2023-03-08 16:57:53 -0800
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Chris", "email"=>"chris@facebook.com", "sadklfhasdkfjhk"=>"askjdfhaskdjfh"}
+Completed 200 OK in 14ms (Views: 0.3ms | ActiveRecord: 4.6ms | Allocations: 2471)
+
+
+Started POST "/users" for ::1 at 2023-03-08 16:59:37 -0800
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Chris", "email"=>"chris@facebook.com", "sadklfhasdkfjhk"=>"askjdfhaskdjfh"}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms | Allocations: 1201)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/users_controller.rb:7:in `create'
+
+Started POST "/users" for ::1 at 2023-03-08 17:00:59 -0800
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Chris", "email"=>"chris@facebook.com"}, "sadklfhasdkfjhk"=>"askjdfhaskdjfh"}
+Completed 200 OK in 57ms (Views: 0.4ms | ActiveRecord: 28.4ms | Allocations: 1991)
+
+
+Started POST "/users?user[name]=Aiden&user[email]=aiden@twitter.com" for ::1 at 2023-03-08 17:02:27 -0800
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Aiden", "email"=>"aiden@twitter.com"}, "sadklfhasdkfjhk"=>"askjdfhaskdjfh"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 200)
+
+
+Started POST "/users?user1[name]=Aiden&user1[email]=aiden@twitter.com" for ::1 at 2023-03-08 17:02:51 -0800
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Chris", "email"=>"chris@facebook.com"}, "sadklfhasdkfjhk"=>"askjdfhaskdjfh", "user1"=>{"name"=>"Aiden", "email"=>"aiden@twitter.com"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 226)
+
+
+Started POST "/users" for ::1 at 2023-03-08 17:03:24 -0800
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Chris", "email"=>"chris@facebook.com"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 191)
+
+
+Started POST "/users/" for ::1 at 2023-03-08 17:03:52 -0800
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Chris", "email"=>"chris@facebook.com"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 198)
+
+
+Started POST "/users/" for ::1 at 2023-03-08 17:04:28 -0800
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Chris", "email"=>"chris@facebook.com"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (2.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Chris"], ["email", "chris@facebook.com"], ["created_at", "2023-03-09 01:04:28.396578"], ["updated_at", "2023-03-09 01:04:28.396578"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (6.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 200 OK in 26ms (Views: 0.4ms | ActiveRecord: 12.2ms | Allocations: 5747)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
