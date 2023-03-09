@@ -29,9 +29,9 @@ class ArtworksController < ApplicationController
     def destroy
         artwork = find_by_artwork_id(params[:id])
 
-        if artwork.destroy
+        if artwork && artwork.destroy
             render json: artwork
-        else
+        elsif artwork
             render json: artwork.errors.full_messages, status: :unprocessable_entity
         end
     end
