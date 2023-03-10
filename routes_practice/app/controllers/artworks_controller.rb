@@ -1,7 +1,11 @@
 class ArtworksController < ApplicationController
     
     def index
-        render json: Artwork.all
+        user = find_user_by_id(params[:user_id])
+
+        if user
+            render json: Artwork.artworks_for_user_id(user.id)
+        end
     end
 
     def show
@@ -48,13 +52,5 @@ class ArtworksController < ApplicationController
 
     def artwork_params
         params.require(:artwork).permit(:title, :image_url, :artist_id)
-    end
-
-    def find_by_artwork_id(artwork_id)
-        artwork = Artwork.find_by(id: artwork_id)
-        return artwork if artwork
-
-        render plain: "404 not found", status: :not_found
-        return false
     end
 end

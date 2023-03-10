@@ -28,5 +28,15 @@ class Artwork < ApplicationRecord
         through: :connections,
         source: :viewer
     
-
+    def self.artworks_for_user_id(id)
+        Artwork
+        .select("artworks.*")
+        .left_outer_joins(:connections)
+        .where('(artworks.artist_id = :user_id) or (artwork_shares.viewer_id = :user_id)', user_id: id)
+        # .joins(:shared_viewers)
+        # .joins(:artist)
+        # .where("users.id = 4 or artists_artworks.id = 4")
+    end
 end
+
+# artists_artworks

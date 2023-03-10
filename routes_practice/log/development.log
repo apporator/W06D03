@@ -1986,3 +1986,344 @@ Processing by ArtworkSharesController#create as */*
 Completed 422 Unprocessable Entity in 220ms (Views: 0.5ms | ActiveRecord: 61.7ms | Allocations: 13094)
 
 
+Started GET "/users/3/artworks" for ::1 at 2023-03-09 16:23:57 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"3"}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 2575)
+
+
+
+NameError - uninitialized constant ArtworksController::UserController
+        user_controller = UserController.new()
+                          ^^^^^^^^^^^^^^
+Did you mean?  UsersController:
+  app/controllers/artworks_controller.rb:4:in `index'
+
+Started GET "/users/3/artworks" for ::1 at 2023-03-09 16:24:14 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40:in `find_user_by_id'
+  [1m[36mArtwork Load (5.0ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 3]]
+  ↳ app/controllers/artworks_controller.rb:8:in `index'
+Completed 200 OK in 102ms (Views: 17.0ms | ActiveRecord: 20.1ms | Allocations: 20916)
+
+
+Started GET "/users/99/artworks" for ::1 at 2023-03-09 16:26:05 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"99"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 99], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 13)
+Completed 500 Internal Server Error in 89ms (Views: 13.6ms | ActiveRecord: 2.0ms | Allocations: 5942)
+
+
+
+NoMethodError - undefined method `errors' for false:FalseClass
+            render json: user.errors.full_messages, status: :unprocessable_entity
+                             ^^^^^^^:
+  app/controllers/artworks_controller.rb:9:in `index'
+
+Started GET "/users/99/artworks" for ::1 at 2023-03-09 16:27:27 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"99"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 99], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 8)
+Completed 404 Not Found in 12ms (Views: 1.6ms | ActiveRecord: 2.0ms | Allocations: 3922)
+
+
+Started GET "/users/3/artworks" for ::1 at 2023-03-09 16:27:35 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (0.7ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 3]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 27ms (Views: 9.7ms | ActiveRecord: 7.1ms | Allocations: 7718)
+
+
+Started GET "/users/3/artworks" for ::1 at 2023-03-09 16:32:28 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (0.4ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 3]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+  [1m[36mArtwork Load (3.2ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" INNER JOIN "artwork_shares" ON "artworks"."id" = "artwork_shares"."artwork_id" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 3]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 63ms (Views: 0.9ms | ActiveRecord: 14.9ms | Allocations: 17887)
+
+
+Started GET "/users/3/artworks" for ::1 at 2023-03-09 16:32:30 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (0.8ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 3]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+  [1m[36mArtwork Load (0.4ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" INNER JOIN "artwork_shares" ON "artworks"."id" = "artwork_shares"."artwork_id" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 3]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 9ms (Views: 0.7ms | ActiveRecord: 1.7ms | Allocations: 2290)
+
+
+  [1m[36mArtworkShare Load (0.8ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtwork Load (0.9ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 2]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mArtwork Load (9.1ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 4]]
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 16:33:49 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (0.3ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 4]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+  [1m[36mArtwork Load (0.4ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" INNER JOIN "artwork_shares" ON "artworks"."id" = "artwork_shares"."artwork_id" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 4]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 8ms (Views: 0.6ms | ActiveRecord: 1.2ms | Allocations: 2264)
+
+
+  [1m[36mArtworkShare Load (0.5ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mArtwork Load (0.4ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 4]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mArtwork Load (1.2ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" INNER JOIN "artwork_shares" ON "artworks"."id" = "artwork_shares"."artwork_id" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 4]]
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 16:43:34 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (1.0ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 4]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+  [1m[36mArtwork Load (1.5ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" INNER JOIN "artwork_shares" ON "artworks"."id" = "artwork_shares"."artwork_id" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 4]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 53ms (Views: 0.8ms | ActiveRecord: 22.1ms | Allocations: 5273)
+
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 16:47:19 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 14.7ms | Allocations: 7782)
+
+
+
+TypeError - wrong argument type Symbol (expected Module):
+  app/controllers/artworks_controller.rb:7:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 16:47:32 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (0.8ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 4]]
+  ↳ app/controllers/artworks_controller.rb:8:in `index'
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 10.1ms | Allocations: 10673)
+
+
+
+ActiveRecord::AssociationNotFoundError - Association named 'shared_artwork' was not found on Artwork; perhaps you misspelled it?
+Did you mean?  shared_viewers:
+  app/controllers/artworks_controller.rb:8:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 16:56:16 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 10.9ms | Allocations: 7745)
+
+
+
+SyntaxError - syntax error, unexpected end-of-input, expecting `end':
+  app/models/artwork.rb:36:in `'
+  app/controllers/artworks_controller.rb:7:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 16:56:29 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (3.3ms)[0m  [1m[34mSELECT artworks.id, artwork_shares.viewer_id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" WHERE "users"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 50ms (ActiveRecord: 19.5ms | Allocations: 12836)
+
+
+
+ActiveRecord::StatementInvalid - PG::UndefinedColumn: ERROR:  column users.user_id does not exist
+LINE 1: ..."users"."id" = "artwork_shares"."viewer_id" WHERE "users"."u...
+                                                             ^:
+  app/controllers/artworks_controller.rb:7:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 16:59:18 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (4.0ms)[0m  [1m[34mSELECT artworks.id, artwork_shares.viewer_id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" WHERE "users"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 39ms (Views: 6.2ms | ActiveRecord: 15.6ms | Allocations: 12357)
+
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:00:23 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (1.0ms)[0m  [1m[34mSELECT artworks.id, artworks.title, artwork_shares.viewer_id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" WHERE "users"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 47ms (Views: 14.9ms | ActiveRecord: 11.6ms | Allocations: 12368)
+
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:03:04 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (1.3ms)[0m  [1m[34mSELECT artworks.id, artworks.title, artwork_shares.viewer_id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id" WHERE "users"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 40ms (Views: 9.4ms | ActiveRecord: 10.8ms | Allocations: 12572)
+
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:05:03 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 5.2ms | Allocations: 4954)
+
+
+
+SyntaxError - syntax error, unexpected ':', expecting ')'
+...: {id: id} || artists_artworks: {id: id})
+...                              ^
+/Users/mbird/Desktop/W06D03/routes_practice/app/models/artwork.rb:36: syntax error, unexpected ')', expecting `end'
+... || artists_artworks: {id: id})
+...                              ^:
+  app/models/artwork.rb:36:in `'
+  app/controllers/artworks_controller.rb:7:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:05:56 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 5.3ms | Allocations: 6485)
+
+
+
+ActiveRecord::PreparedStatementInvalid - wrong number of bind variables (1 for 2) in: users.id = ? or artists_artworks.id = ?:
+  app/models/artwork.rb:36:in `artworks_for_user_id'
+  app/controllers/artworks_controller.rb:7:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:06:14 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 6.7ms | Allocations: 6471)
+
+
+
+ActiveRecord::PreparedStatementInvalid - wrong number of bind variables (1 for 2) in: users.id = (?) or artists_artworks.id = (?):
+  app/models/artwork.rb:36:in `artworks_for_user_id'
+  app/controllers/artworks_controller.rb:7:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:06:34 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (1.0ms)[0m  [1m[34mSELECT artworks.id, artworks.title, artwork_shares.viewer_id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id" WHERE (users.id = 4 or artists_artworks.id = 4)[0m
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 36ms (Views: 12.7ms | ActiveRecord: 10.8ms | Allocations: 12526)
+
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:06:35 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (3.0ms)[0m  [1m[34mSELECT artworks.id, artworks.title, artwork_shares.viewer_id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id" WHERE (users.id = 4 or artists_artworks.id = 4)[0m
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 10ms (Views: 3.6ms | ActiveRecord: 3.5ms | Allocations: 1620)
+
+
+  [1m[36mArtwork Load (1.7ms)[0m  [1m[34mSELECT artworks.id, artworks.title, artwork_shares.viewer_id, artists_artworks.id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id"[0m
+  [1m[36mArtwork Load (1.4ms)[0m  [1m[34mSELECT artworks.id, artworks.title, artwork_shares.viewer_id, artists_artworks.id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id" WHERE (users.id = 4 or artists_artworks.id = 4)[0m
+  [1m[36mArtwork Load (4.3ms)[0m  [1m[34mSELECT artworks.id, artworks.title, artwork_shares.viewer_id, artists_artworks.id as artist_id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id"[0m
+  [1m[36mArtwork Load (1.7ms)[0m  [1m[34mSELECT artworks.id, users.id, artists_artworks.id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id"[0m
+  [1m[36mArtwork Load (1.3ms)[0m  [1m[34mSELECT artworks.id as aw_id, users.id as viewer_id, artists_artworks.id as artist_id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id" WHERE (users.id = 4 or artists_artworks.id = 4)[0m
+  [1m[36mArtwork Load (1.0ms)[0m  [1m[34mSELECT artworks.id as aw_id, users.id as viewer_id, artists_artworks.id as artist_id FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mArtwork Load (0.3ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 4]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mArtwork Load (0.7ms)[0m  [1m[34mSELECT * FROM "artworks" INNER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" INNER JOIN "users" ON "users"."id" = "artwork_shares"."viewer_id" INNER JOIN "users" "artists_artworks" ON "artists_artworks"."id" = "artworks"."artist_id"[0m
+  [1m[36mArtwork Load (0.5ms)[0m  [1m[34mSELECT * FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE ((artworks.artist_id = 4) or (artwork_shares.viewer_id = 4))[0m
+  [1m[36mArtwork Load (0.3ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks"[0m
+  [1m[36mArtwork Load (0.3ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks"[0m
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:32:30 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 4.7ms | Allocations: 11930)
+
+
+
+ActiveRecord::PreparedStatementInvalid - wrong number of bind variables (1 for 2) in: (artworks.artist_id = ?) or (artwork_shares.viewer_id = ?):
+  app/models/artwork.rb:35:in `artworks_for_user_id'
+  app/controllers/artworks_controller.rb:7:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:33:07 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (2.7ms)[0m  [1m[34mSELECT artist.* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE ((artworks.artist_id = 4) or (artwork_shares.viewer_id = 4))[0m
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 12.3ms | Allocations: 12673)
+
+
+
+ActiveRecord::StatementInvalid - PG::UndefinedTable: ERROR:  missing FROM-clause entry for table "artist"
+LINE 1: SELECT artist.* FROM "artworks" LEFT OUTER JOIN "artwork_sha...
+               ^:
+  app/controllers/artworks_controller.rb:7:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:33:29 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (1.7ms)[0m  [1m[34mSELECT artists.* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE ((artworks.artist_id = 4) or (artwork_shares.viewer_id = 4))[0m
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 10.4ms | Allocations: 10670)
+
+
+
+ActiveRecord::StatementInvalid - PG::UndefinedTable: ERROR:  missing FROM-clause entry for table "artists"
+LINE 1: SELECT artists.* FROM "artworks" LEFT OUTER JOIN "artwork_sh...
+               ^:
+  app/controllers/artworks_controller.rb:7:in `index'
+
+Started GET "/users/4/artworks" for ::1 at 2023-03-09 17:33:41 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `find_user_by_id'
+  [1m[36mArtwork Load (2.5ms)[0m  [1m[34mSELECT artworks.* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE ((artworks.artist_id = 4) or (artwork_shares.viewer_id = 4))[0m
+  ↳ app/controllers/artworks_controller.rb:7:in `index'
+Completed 200 OK in 43ms (Views: 14.0ms | ActiveRecord: 14.0ms | Allocations: 11984)
+
+

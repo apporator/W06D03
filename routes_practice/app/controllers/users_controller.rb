@@ -36,13 +36,7 @@ class UsersController < ApplicationController
         end
     end
 
-    def find_user_by_id(user_id)
-        user = User.find_by(id: user_id)
-
-        return user if user
-        render plain: "404 Not Found", status: :not_found
-        return false
-    end
+    
 
     def destroy 
         user = find_user_by_id(params[:id])
